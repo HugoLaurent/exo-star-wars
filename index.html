@@ -3,9 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>May The Force Be With You</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
   </head>
-  <body></body>
+  <body class="bg-black h-screen lg:overflow-y-hidden">
+    <header
+      class="flex py-4 w-full gap-12 border-y flex-wrap justify-center lg:justify-start"
+    >
+      <img class="h-fit lg:ml-6" src="./assets/logotype.png" alt="" />
+      <section class="flex flex-wrap justify-center gap-6">
+        <button class="header-button">Accueil</button>
+        <button class="header-button">Prochaine mission</button>
+      </section>
+    </header>
+    <main class="lg:flex h-full">
+      <div
+        class="left-size lg:h-screen min-w-36 flex gap-6 lg:flex-col pt-8 justify-center lg:justify-start items-center lg:ml-2 lg:border-r uppercase"
+      >
+        <div class="flex flex-col gap-2 items-center">
+          <img
+            class="planet w-14 invert"
+            src="./assets/globe-terrestre.png"
+            alt=""
+          /><span>planètes</span>
+        </div>
+        <div class="h-fit flex flex-col gap-2 items-center">
+          <img
+            class="vehicule w-14 invert"
+            src="./assets/space.png"
+            alt=""
+          /><span>véhicules</span>
+        </div>
+        <div class="flex flex-col gap-2 items-center">
+          <img
+            class="w-14 people invert"
+            src="./assets/astronaute.png"
+            alt=""
+          /><span>personnes</span>
+        </div>
+      </div>
+      <div class="lg:flex-1 lg:flex lg:justify-around lg:mx-12 lg:flex-col">
+        <article class="about mb-2 bg-white w-full lg:h-[220px]">
+          <h1>about the universe</h1>
+          <p>
+            Bienvenue sur <span>about the universe</span> pour découvrir touts
+            nos découvertes à propos du monde qui nous entours !
+          </p>
+          <button class="button-main">découvrir</button>
+        </article>
+        <article class="stats bg-white w-full lg:h-[400px]">
+          <div>
+            <h2>les chiffres</h2>
+            <p>
+              Nous nous efforçons à archiver toutes nos trouvailles pour vous
+              les partager autant que possible!
+            </p>
+          </div>
+          <article class="detail-stat">
+            <article>
+              <img src="./assets/astronaute.png" alt="" />
+              <section class="person-section">
+                <p>Nombre d'être vivants recensés</p>
+                <span
+                  ><img class="loader" src="./assets/loading.png" alt=""
+                /></span>
+              </section>
+            </article>
+            <article>
+              <img src="./assets/space.png" alt="" />
+              <section class="travel-section">
+                <p>Nombre d'être véhicules recensés</p>
+                <span
+                  ><img class="loader" src="./assets/loading.png" alt=""
+                /></span>
+              </section>
+            </article>
+            <article>
+              <img src="./assets/globe-terrestre.png" alt="" />
+              <section class="planet-section">
+                <p>Nombre d'être planète recensés</p>
+                <span
+                  ><img class="loader" src="./assets/loading.png" alt=""
+                /></span>
+              </section>
+            </article>
+            <article class="time-section">
+              <img src="./assets/time-and-date.png" alt="" />
+              <section>
+                <p>Prochaine mission</p>
+                <span>10 Juin 2021</span>
+              </section>
+            </article>
+          </article>
+          <button class="button-main self-end">
+            participer à la prochaine mission
+          </button>
+        </article>
+      </div>
+    </main>
+  </body>
   <script src="script.js"></script>
 </html>
