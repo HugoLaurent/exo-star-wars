@@ -10,10 +10,6 @@ async function getStats() {
   const vehicleData = await vehicle.json();
   const planetData = await planet.json();
 
-  console.log(personData);
-  console.log(vehicleData);
-  console.log(planetData);
-
   spanPerson.textContent = personData.count;
   spanVehicle.textContent = vehicleData.count;
   spanPlanet.textContent = planetData.count;
