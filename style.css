@@ -255,6 +255,11 @@ header .header-button {
   height: fit-content;
 }
 
+.planet-details img {
+  width: 60px;
+  filter: invert();
+}
+
 .planet-details p {
   font-size: 1.5em;
   text-shadow: 2px 2px 4px black;
@@ -266,7 +271,6 @@ header .header-button {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .planet-right h2 {
@@ -283,6 +287,7 @@ header .header-button {
   color: white;
   border: 1px solid white;
   padding: 5px;
+  margin-bottom: 10px;
 }
 
 .planet-right select {
@@ -313,6 +318,7 @@ header .header-button {
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: white black;
+  margin-bottom: 10px;
 }
 
 .first-list {
@@ -339,4 +345,47 @@ header .header-button {
   margin-inline: auto;
   animation: spin 1s linear infinite;
   width: 50px;
+}
+
+.div-toggle {
+  display: none;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 600px;
+  padding: 20px;
+}
+
+.div-toggle h2,
+h3 {
+  font-size: 2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #5e96b7;
+}
+
+.div-toggle h3 {
+  font-size: 1.2em;
+}
+
+.div-toggle p {
+  font-size: 16px;
+  color: #5e96b7;
+}
+
+.div-toggle span {
+  font-size: 16px;
+  color: white;
+}
+
+.flex-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.solo-detail {
+  min-width: 500px;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
 }

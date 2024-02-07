@@ -34,11 +34,12 @@ const nbPlanet = document.querySelector(".nb-planet");
 const loader = document.querySelector(".loader-planet-detail");
 async function getPlanets() {
   const allPlanet = await getAllPlanets();
-  console.log(allPlanet);
 
   allPlanet.forEach((planet) => {
     const planetItem = document.createElement("li");
-    planetItem.textContent = planet.name;
+    const pPlanetItem = document.createElement("p");
+    planetItem.appendChild(pPlanetItem);
+    pPlanetItem.textContent = planet.name;
     planetList.appendChild(planetItem);
     const planetDetails = document.createElement("span");
     planetDetails.textContent = planet.terrain;
@@ -46,11 +47,34 @@ async function getPlanets() {
     loader.style.display = "none";
   });
   nbPlanet.textContent = allPlanet.length + " planets found.";
+  const planetName = document.querySelectorAll(".planet-list li");
+  const titleDetails = document.querySelector(".div-toggle h2");
+  const populationDetails = document.querySelector(".span-population ");
+  const diametreDetails = document.querySelector(".div-toggle .diametre span");
+  const climatDetails = document.querySelector(".div-toggle .climat span");
+  const aimantDetails = document.querySelector(".div-toggle .aimant span");
+  const terrainDetails = document.querySelector(".div-toggle .terrain span");
+  planetName.forEach((planet) =>
+    planet.addEventListener("click", (e) => {
+      document.querySelector(".title-toggle").style.display = "none";
+      document.querySelector(".div-toggle").style.display = "flex";
+      console.log(e.target.textContent);
+      const planetSelected = allPlanet.find(
+        (item) => item.name === e.target.textContent
+      );
+      titleDetails.textContent = planetSelected.name;
+      populationDetails.textContent = planetSelected.population;
+      diametreDetails.textContent = planetSelected.diameter;
+      climatDetails.textContent = planetSelected.climate;
+      aimantDetails.textContent = planetSelected.population;
+      terrainDetails.textContent = planetSelected.terrain;
+    })
+  );
 }
 
 getPlanets();
 
-// ON CGHANGE INPUT
+// ON CHANGE INPUT
 
 const input = document.querySelector(".search-planet");
 input.addEventListener("input", (e) => {
@@ -75,3 +99,5 @@ input.addEventListener("input", (e) => {
     pluralOrNot +
     " found.";
 });
+
+// OPEN DETAILS LOGIC
