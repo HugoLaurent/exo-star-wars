@@ -223,3 +223,120 @@ header .header-button {
     transition: all 0.3s;
   }
 }
+
+/* PLANET PAGE CSS */
+
+.right-planet {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.planet-choice,
+.planet-details {
+  border: 1px solid white;
+}
+
+.planet-choice {
+  background-image: url("/assets/fond-planet.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 650px;
+  height: 600px;
+}
+
+.planet-details {
+  flex-grow: 1;
+
+  width: 800px;
+  height: fit-content;
+}
+
+.planet-details p {
+  font-size: 1.5em;
+  text-shadow: 2px 2px 4px black;
+  color: #5e96b7;
+  padding: 5px 3px;
+}
+
+.planet-right {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.planet-right h2 {
+  font-size: 2em;
+  text-transform: uppercase;
+
+  font-weight: 700;
+  text-shadow: 2px 2px 4px black;
+}
+
+.planet-right select,
+.planet-right input {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.planet-right select {
+  width: fit-content;
+}
+
+.input-planet {
+  width: 100%;
+  position: relative;
+}
+
+.search-planet {
+  width: 100%;
+}
+
+.loupe {
+  right: 8px;
+  top: 5px;
+  display: inline;
+  width: 25px;
+  height: 25px;
+  filter: invert();
+  position: absolute;
+}
+
+.planet-list {
+  height: fit-content;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: white black;
+}
+
+.first-list {
+  padding: 20px;
+  position: static;
+}
+
+.first-list {
+  background-color: #5e96b7;
+  font-weight: 700;
+}
+
+.planet-list li,
+.planet-right .first-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.loader-planet-detail {
+  margin-inline: auto;
+  animation: spin 1s linear infinite;
+  width: 50px;
+}
