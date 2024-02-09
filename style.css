@@ -389,3 +389,12 @@ h3 {
   padding: 20px;
   gap: 20px;
 }
+
+.modal-content input,
+.modal-content textarea {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 5px;
+  margin-bottom: 10px;
+}

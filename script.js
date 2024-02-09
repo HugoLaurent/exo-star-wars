@@ -18,6 +18,21 @@ async function getStats() {
 getStats();
 
 // PLANET PAGE JS
+const planetList = document.querySelector(".planet-list");
+const nbPlanet = document.querySelector(".nb-planet");
+const loader = document.querySelector(".loader-planet-detail");
+const input = document.querySelector(".search-planet");
+const select = document.querySelector("select");
+const titleToggle = document.querySelector(".title-toggle");
+const divToggle = document.querySelector(".div-toggle");
+const titleDetails = document.querySelector(".div-toggle h2");
+const populationDetails = document.querySelector(".span-population");
+const diametreDetails = document.querySelector(".div-toggle .diametre span");
+const climatDetails = document.querySelector(".div-toggle .climat span");
+const aimantDetails = document.querySelector(".div-toggle .aimant span");
+const terrainDetails = document.querySelector(".div-toggle .terrain span");
+
+let allPlanet;
 
 async function getAllPlanets() {
   const arrayPlanet = [];
@@ -29,75 +44,112 @@ async function getAllPlanets() {
   return arrayPlanet;
 }
 
-const planetList = document.querySelector(".planet-list");
-const nbPlanet = document.querySelector(".nb-planet");
-const loader = document.querySelector(".loader-planet-detail");
+function createPlanetItem(planet) {
+  const planetItem = document.createElement("li");
+  const pPlanetItem = document.createElement("p");
+  pPlanetItem.textContent = planet.name;
+  planetItem.appendChild(pPlanetItem);
+
+  const planetDetails = document.createElement("span");
+  planetDetails.textContent = planet.terrain;
+  planetItem.appendChild(planetDetails);
+
+  loader.style.display = "none";
+
+  planetItem.addEventListener("click", () => {
+    displayPlanetDetails(planet.name);
+  });
+
+  return planetItem;
+}
+
+function displayPlanetDetails(planetName) {
+  titleToggle.style.display = "none";
+  divToggle.style.display = "flex";
+
+  const planetSelected = allPlanet.find((item) => item.name === planetName);
+
+  titleDetails.textContent = planetSelected.name;
+  populationDetails.textContent = planetSelected.population;
+  diametreDetails.textContent = planetSelected.diameter;
+  climatDetails.textContent = planetSelected.climate;
+  aimantDetails.textContent = planetSelected.population;
+  terrainDetails.textContent = planetSelected.terrain;
+}
+
+function filterPlanets(value) {
+  const planetName = document.querySelectorAll(".planet-list li");
+  planetName.forEach((planet) => {
+    const displayStyle = planet.textContent
+      .toLowerCase()
+      .includes(value.toLowerCase())
+      ? "flex"
+      : "none";
+    planet.style.display = displayStyle;
+  });
+
+  const visiblePlanetsCount = document.querySelectorAll(
+    ".planet-list li:not([style='display: none;'])"
+  ).length;
+  const pluralOrNot = visiblePlanetsCount > 1 ? "s" : "";
+  nbPlanet.textContent = `${visiblePlanetsCount} planet${pluralOrNot} found.`;
+}
+
+function handleSelectChange(selectedOption) {
+  const filteredPlanets = allPlanet.filter((planet) => {
+    const population = parseInt(planet.population);
+
+    if (selectedOption === "small" && population <= 100000) {
+      return true;
+    } else if (
+      selectedOption === "medium" &&
+      population > 100000 &&
+      population <= 1000000
+    ) {
+      return true;
+    } else if (selectedOption === "big" && population > 1000000) {
+      return true;
+    } else if (selectedOption === "population") {
+      return true;
+    }
+
+    return false;
+  });
+
+  planetList.innerHTML = "";
+  filteredPlanets.forEach((planet) => {
+    const planetItem = createPlanetItem(planet);
+    planetList.appendChild(planetItem);
+  });
+
+  const visiblePlanetsCount = filteredPlanets.length;
+  const pluralOrNot = visiblePlanetsCount > 1 ? "s" : "";
+  nbPlanet.textContent = `${visiblePlanetsCount} planet${pluralOrNot} found.`;
+}
+
 async function getPlanets() {
-  const allPlanet = await getAllPlanets();
+  allPlanet = await getAllPlanets();
 
   allPlanet.forEach((planet) => {
-    const planetItem = document.createElement("li");
-    const pPlanetItem = document.createElement("p");
-    planetItem.appendChild(pPlanetItem);
-    pPlanetItem.textContent = planet.name;
+    const planetItem = createPlanetItem(planet);
     planetList.appendChild(planetItem);
-    const planetDetails = document.createElement("span");
-    planetDetails.textContent = planet.terrain;
-    planetItem.appendChild(planetDetails);
-    loader.style.display = "none";
   });
-  nbPlanet.textContent = allPlanet.length + " planets found.";
-  const planetName = document.querySelectorAll(".planet-list li");
-  const titleDetails = document.querySelector(".div-toggle h2");
-  const populationDetails = document.querySelector(".span-population ");
-  const diametreDetails = document.querySelector(".div-toggle .diametre span");
-  const climatDetails = document.querySelector(".div-toggle .climat span");
-  const aimantDetails = document.querySelector(".div-toggle .aimant span");
-  const terrainDetails = document.querySelector(".div-toggle .terrain span");
-  planetName.forEach((planet) =>
-    planet.addEventListener("click", (e) => {
-      document.querySelector(".title-toggle").style.display = "none";
-      document.querySelector(".div-toggle").style.display = "flex";
-      console.log(e.target.textContent);
-      const planetSelected = allPlanet.find(
-        (item) => item.name === e.target.textContent
-      );
-      titleDetails.textContent = planetSelected.name;
-      populationDetails.textContent = planetSelected.population;
-      diametreDetails.textContent = planetSelected.diameter;
-      climatDetails.textContent = planetSelected.climate;
-      aimantDetails.textContent = planetSelected.population;
-      terrainDetails.textContent = planetSelected.terrain;
-    })
-  );
+
+  nbPlanet.textContent = `${allPlanet.length} planets found.`;
 }
 
 getPlanets();
 
-// ON CHANGE INPUT
-
-const input = document.querySelector(".search-planet");
 input.addEventListener("input", (e) => {
-  const value = e.target.value;
-  const planetName = document.querySelectorAll(".planet-list li");
-  planetName.forEach((planet) => {
-    if (planet.textContent.toLowerCase().includes(value.toLowerCase())) {
-      planet.style.display = "flex";
-    } else {
-      planet.style.display = "none";
-    }
-  });
-  const pluralOrNot =
-    document.querySelectorAll(".planet-list li:not([style='display: none;'])")
-      .length > 1
-      ? "s"
-      : "";
-  nbPlanet.textContent =
-    document.querySelectorAll(".planet-list li:not([style='display: none;'])")
-      .length +
-    " planet" +
-    pluralOrNot +
-    " found.";
+  filterPlanets(e.target.value);
 });
 
-// OPEN DETAILS LOGIC
+select.addEventListener("change", (e) => {
+  handleSelectChange(e.target.value);
+});
+
+planetList.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    displayPlanetDetails(e.target.textContent);
+  }
+});
